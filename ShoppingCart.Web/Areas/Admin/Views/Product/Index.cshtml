@@ -1,4 +1,8 @@
-﻿<div class="container p-4">
+﻿@model ShoppingCart.DataAccess.ViewModels.ProductVM
+
+
+
+<div class="container p-4">
   <div class="row p-3">
     <div class="col-6">
       <h2 class="text-primary">List of Products</h2>
@@ -18,6 +22,28 @@
       <th>Action</th>
     </tr>
   </thead>
+  <tbody>
+        @foreach (var item in Model.Products)
+        {
+        <tr>
+          <td>@item.Name</td>
+          <td>@item.Price</td>
+          <td>@item.CategoryId</td>
+          <td>@item.Description</td>
+                @if (item.ImageUrl != null)
+                {
+              <td>@item.ImageUrl</td>
+
+                }
+
+          <td role="group">
+            <a asp-action="CreateUpdate" asp-controller="Category" asp-route-id="@item.Id"> <i class="bi bi-pencil-square">Edit</i></a>
+            <a asp-action="Delete" asp-controller="Category" asp-route-id="@item.Id"> <i class="bi bi-trash">Delete</i></a>
+
+          </td>
+        </tr>
+        }
+  </tbody>
 </table>
 @section scripts{
     <script src="~/js/Product.js"></script>
