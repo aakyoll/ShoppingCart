@@ -8,7 +8,7 @@ namespace ShoppingCart.DataAccess.Repositories
 {
     public interface IUnitofWork
     {
-        ICategoryRepository Category { get; }
+        ICategoryRepository Categories { get; }
 
         IProductRepository Product { get; }
 

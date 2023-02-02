@@ -19,7 +19,7 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             CategoryVM categoryVM = new CategoryVM();
-            categoryVM.categories = _unitofwork.Category.GetAll();
+            categoryVM.categories = _unitofwork.Categories.GetAll();
             return View(categoryVM);
 
         }
@@ -33,7 +33,7 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
             }
             else
             {
-                vm.Category = _unitofwork.Category.GetT(x => x.Id == id);
+                vm.Category = _unitofwork.Categories.GetT(x => x.Id == id);
                 if (vm.Category == null)
                 {
                     return NotFound();
@@ -53,12 +53,12 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
             {
                 if (vm.Category.Id == 0)
                 {
-                    _unitofwork.Category.Add(vm.Category);
+                    _unitofwork.Categories.Add(vm.Category);
                     TempData["success"] = "Category Create Done!";
                 }
                 else
                 {
-                    _unitofwork.Category.Update(vm.Category);
+                    _unitofwork.Categories.Update(vm.Category);
                     TempData["success"] = "Category Update Done!";
                 }
                 _unitofwork.Save();
@@ -76,7 +76,7 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var category = _unitofwork.Category.GetT(x => x.Id == id);
+            var category = _unitofwork.Categories.GetT(x => x.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -90,9 +90,9 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteData(int? id)
         {
-            var category = _unitofwork.Category.GetT(x => x.Id == id);
+            var category = _unitofwork.Categories.GetT(x => x.Id == id);
             if (category == null) { return NotFound(); }
-            _unitofwork.Category.Delete(category);
+            _unitofwork.Categories.Delete(category);
             _unitofwork.Save();
             TempData["success"] = "Category Deleted Done!";
             return RedirectToAction("Index");

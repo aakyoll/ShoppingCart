@@ -19,6 +19,8 @@
       <th>Product Description</th>
       <th>Price</th>
       <th>Category</th>
+      <th>ImageUrl</th>
+
       <th>Action</th>
     </tr>
   </thead>
@@ -27,9 +29,9 @@
         {
         <tr>
           <td>@item.Name</td>
+          <td>@item.Description</td>
           <td>@item.Price</td>
           <td>@item.CategoryId</td>
-          <td>@item.Description</td>
                 @if (item.ImageUrl != null)
                 {
               <td>@item.ImageUrl</td>

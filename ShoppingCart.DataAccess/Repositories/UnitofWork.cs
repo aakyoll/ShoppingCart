@@ -11,7 +11,7 @@ namespace ShoppingCart.DataAccess.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public ICategoryRepository Category { get; private set; }
+        public ICategoryRepository Categories { get; private set; }
 
         public IProductRepository Product { get; private set; }
 
@@ -20,7 +20,7 @@ namespace ShoppingCart.DataAccess.Repositories
         {
 
             _context = context;
-            Category = new CategoryRepository(context);
+            Categories = new CategoryRepository(context);
             Product = new ProductRepository(context);
         }
 

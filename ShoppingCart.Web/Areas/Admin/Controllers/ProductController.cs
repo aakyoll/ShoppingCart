@@ -38,8 +38,9 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
             ProductVM vm = new ProductVM()
             {
                 Product = new(),
-                Categories = _unitofwork.Category.GetAll().Select(x => new SelectListItem()
+                Categories = _unitofwork.Categories.GetAll().Select(x => new SelectListItem()
                 {
+                    Selected=true,
                     Text = x.Name,
                     Value = x.Id.ToString(),
                 }
